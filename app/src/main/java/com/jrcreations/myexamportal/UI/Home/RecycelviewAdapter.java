@@ -2,6 +2,7 @@ package com.jrcreations.myexamportal.UI.Home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jrcreations.myexamportal.R;
+import com.jrcreations.myexamportal.UI.Selection.MockTest;
 import com.jrcreations.myexamportal.UI.Selection.UiSelection;
 
 import java.util.List;
@@ -40,10 +42,19 @@ public class RecycelviewAdapter extends RecyclerView.Adapter<RecycelviewAdapter.
 
         holder.button.setText(users.getName());
         holder.button.setOnClickListener(v->{
-            Intent i = new Intent(context, UiSelection.class);
-            i.putExtra("key",holder.button.getText().toString());
+//            Intent i = new Intent(context, UiSelection.class);
+//            i.putExtra("key",holder.button.getText().toString());
+//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            context.startActivity(i);
+
+            if(holder.button.getText().toString().equals("Mock Test")){
+                Intent i = new Intent(context, MockTest.class);
+                i.putExtra("key",holder.button.getText().toString());
+                Log.d("TAG", "onBindViewHolder: "+holder.button.getText().toString());
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
+            }
+
         });
 
     }

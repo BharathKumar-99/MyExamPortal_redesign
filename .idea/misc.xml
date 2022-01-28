@@ -5,11 +5,13 @@
       <map>
         <entry key="..\:/AndroidStudioProjects/MyExamPortal/app/src/main/res/layout/activity_home_screen.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/MyExamPortal/app/src/main/res/layout/activity_main.xml" value="0.18645833333333334" />
+        <entry key="..\:/AndroidStudioProjects/MyExamPortal/app/src/main/res/layout/activity_mock_test.xml" value="0.18645833333333334" />
         <entry key="..\:/AndroidStudioProjects/MyExamPortal/app/src/main/res/layout/activity_splash_screen.xml" value="0.18" />
         <entry key="..\:/AndroidStudioProjects/MyExamPortal/app/src/main/res/layout/activity_ui_selection.xml" value="0.18645833333333334" />
         <entry key="..\:/AndroidStudioProjects/MyExamPortal/app/src/main/res/layout/fragment_login.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/MyExamPortal/app/src/main/res/layout/fragment_signup.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/MyExamPortal/app/src/main/res/layout/mainbutton.xml" value="0.1037037037037037" />
+        <entry key="..\:/AndroidStudioProjects/MyExamPortal/app/src/main/res/layout/mocktestrow.xml" value="0.22" />
       </map>
     </option>
   </component>

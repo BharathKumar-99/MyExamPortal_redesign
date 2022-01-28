@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyExamPortal">
         <activity
+            android:name=".UI.Selection.MockTest"
+            android:exported="false" />
+        <activity
             android:name=".UI.Selection.UiSelection"
             android:exported="false" />
         <activity
@@ -26,7 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginSignup.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

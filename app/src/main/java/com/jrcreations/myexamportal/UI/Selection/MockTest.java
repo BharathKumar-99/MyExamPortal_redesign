@@ -1,24 +1,17 @@
 package com.jrcreations.myexamportal.UI.Selection;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.jrcreations.myexamportal.LoginSignup.Login;
 import com.jrcreations.myexamportal.R;
 
 import org.json.JSONArray;
@@ -29,57 +22,45 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UiSelection extends AppCompatActivity {
-
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    TextView name;
-    private List<RowModel> movieList;
+public class MockTest extends AppCompatActivity {
+TextView name;
+    private List<MockTestModel> mockTestModels;
+RecyclerView recyclerView;
     String value;
-    RecyclerView recyclerView;
-    private RecycleAdaptor adapter;
-    @RequiresApi(api = Build.VERSION_CODES.R)
+    RecycleMock adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ui_selection);
+        setContentView(R.layout.activity_mock_test);
 
-        if (user == null) {
-            startActivity(new Intent(this, Login.class));
-        }
-        name=findViewById(R.id.selheading);
-        recyclerView=findViewById(R.id.recview);
+        name=findViewById(R.id.selheading2);
+        recyclerView=findViewById(R.id.mrec);
+
+        name.setText("Mock Test");
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        adapter=new RecycleAdaptor(this,movieList);
+        adapter=new RecycleMock(this,mockTestModels);
         recyclerView.setAdapter(adapter);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             value = extras.getString("key");
             //The key argument here must match that used in the other activity
         }
-     
 
         getname(value);
-
-
-
-
-
-
+        Log.d("TAG", "onCreate: ");
     }
-
-
-
     public void getname(String id) {
 
 
         //getting the progressbar
         String url = "https://myexamportals.com/Php/getSelection.php";
         //creating a string request to send request to the url
+        Log.d("TAG", "getname: ");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 response -> {
-
+                    Log.d("TAG", "getname:res ");
                     try {
 
                         JSONArray tutorialsArray = new JSONArray(response);
@@ -88,12 +69,15 @@ public class UiSelection extends AppCompatActivity {
                         for (int i = 0; i < tutorialsArray.length(); i++) {
                             //getting the json object of the particular index inside the array
                             JSONObject tutorialsObject = tutorialsArray.getJSONObject(i);
-                            RowModel users=new RowModel();
-                            users.setName(tutorialsObject.getString("name"));
-                            users.setPic(tutorialsObject.getString("pic"));
+                            MockTestModel mt=new MockTestModel();
+                            mt.setName(tutorialsObject.getString("name"));
+                            mt.setMarks(tutorialsObject.getInt("marks"));
+                            mt.setQuestions(tutorialsObject.getInt("questions"));
+                            mt.setTime(tutorialsObject.getInt("time"));
+
                             //creating a tutorial object and giving them the values from json object
-                            Log.d("TAG", "onResponse: " + users.getName());
-                            movieList.add(users);
+                            Log.d("TAG", "onResponse: " + mt.getName());
+                            mockTestModels.add(mt);
 
                         }
                         adapter.notifyDataSetChanged();
@@ -101,6 +85,7 @@ public class UiSelection extends AppCompatActivity {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        Log.d("TAG", "getnamew: ");
                     }
                 },
                 error -> {
